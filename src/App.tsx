@@ -1,66 +1,69 @@
-import CssBaseline from "@mui/material/CssBaseline";
-import { Container, Typography, TextField, Button } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import {
-    ZoomIn,
-    Done,
-    History,
-    SaveOutlined,
-    ArrowDropDown,
-    Cancel,
+    Container,
+    Stack,
+    Typography,
+    TextField,
+    InputAdornment,
+    Button,
+} from "@mui/material";
+import {
+    Search as SearchIcon,
+    Done as DoneIcon,
+    History as HistoryIcon,
+    SaveOutlined as SaveOutlinedIcon,
+    ArrowDropDown as ArrowDropDownIcon,
+    Cancel as CancelIcon,
 } from "@mui/icons-material";
-import DataTableDemo from "./components/DataTableDemo";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function App() {
     return (
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-            <CssBaseline />
-            <Container maxWidth="xl">
-                <div className="flex items-center justify-between mt-16">
-                    <div className="grid gap-y-4">
-                        <Typography variant="h4">
-                            Summary of all courses
-                        </Typography>
-                        <Typography className="underline text-blue-700">
-                            Last updated August 25, 2021 at 09:45
-                        </Typography>
-                    </div>
-                    <div className="flex items-center relative w-[500px]">
-                        <TextField
-                            placeholder="Search by title or curator"
-                            className="w-full"
-                        />
-                        <ZoomIn className="absolute right-3" />
-                    </div>
-                </div>
-                <div className="flex items-center justify-between mt-16">
-                    <div>
-                        <DatePicker label="Report date" />
-                    </div>
-                    <div className="flex gap-x-4">
-                        <Button variant="contained" startIcon={<Done />}>
-                            Create
-                        </Button>
-                        <Button variant="outlined" startIcon={<History />}>
-                            History
-                        </Button>
-                        <Button variant="outlined" startIcon={<SaveOutlined />}>
-                            Save
-                        </Button>
-                        <Button variant="outlined" endIcon={<ArrowDropDown />}>
-                            Download Report
-                        </Button>
-                        <Button variant="outlined" startIcon={<Cancel />}>
-                            Close
-                        </Button>
-                    </div>
-                </div>
-                <div className="mt-16">
-                    <DataTableDemo />
-                </div>
-            </Container>
-        </LocalizationProvider>
+        <Container maxWidth="xl">
+            <Stack direction="row" justifyContent="space-between" mt={5}>
+                <Typography variant="h4">Summary of all courses</Typography>
+                <TextField
+                    label="Search by title or curator"
+                    variant="outlined"
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    sx={{
+                        width: 500,
+                    }}
+                />
+            </Stack>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" mt={5}>
+                <LocalizationProvider dateAdapter={AdapterMoment}>
+                    <DatePicker label="Report date" />
+                </LocalizationProvider>
+                <Stack direction="row" spacing={2}>
+                    <Button variant="contained" startIcon={<DoneIcon />}>
+                        CREATE
+                    </Button>
+                    <Button variant="outlined" startIcon={<HistoryIcon />}>
+                        HISTORY
+                    </Button>
+                    <Button variant="outlined" startIcon={<SaveOutlinedIcon />}>
+                        SAVE
+                    </Button>
+                    <Button variant="outlined" endIcon={<ArrowDropDownIcon />}>
+                        DOWNLOAD REPORT
+                    </Button>
+                    <Button variant="outlined" startIcon={<CancelIcon />}>
+                        CLOSE
+                    </Button>
+                </Stack>
+            </Stack>
+            <Stack>
+                
+            </Stack>
+        </Container>
     );
 }
 

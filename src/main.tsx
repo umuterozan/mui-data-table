@@ -1,7 +1,11 @@
 import ReactDOM from "react-dom/client";
+import { StrictMode } from "react";
+import { CssBaseline } from "@mui/material";
 import App from "./App";
-import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <App />
+    <StrictMode>
+        <CssBaseline />
+        <App />
+    </StrictMode>
 );
